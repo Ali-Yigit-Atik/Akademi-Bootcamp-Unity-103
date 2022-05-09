@@ -1,12 +1,12 @@
-#Takım İsmi
+# Takım İsmi
 
 Takım Kintsugi
 
-#Oyun İle İlgili Bilgiler
+# Oyun İle İlgili Bilgiler
 
 Puzzle adventure click and point oyun olacak.
 
-#Takım Üyeleri:
+# Takım Üyeleri:
 
     Enes Ünlü: Scrum Master
     Beyza Nur Bilgi: Product Owner
@@ -14,17 +14,17 @@ Puzzle adventure click and point oyun olacak.
     Haktan Öztürkçü: Team Member/Developer
     Elif Nazlıcan Koca: Team Member/Developer
 
-#Oyun İsmi
+# Oyun İsmi
 
 --As Long As You Stay--
 
-#Oyun Açıklaması:
+# Oyun Açıklaması:
 Soyut kavramlar kullanarak bir çocuğun mücadelesini anlatacağız. 
 
-#Oyun Özellikleri
+# Oyun Özellikleri
 2D, Story base 
 
-#Hedef Kitle
+# Hedef Kitle
 Dijital video oyuncuları
 
 Product Backlog URL![trello ss](https://user-images.githubusercontent.com/104438447/167482252-b5f45b51-04d7-4259-8703-6f110449fccb.png)
