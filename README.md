@@ -27,7 +27,7 @@ Soyut kavramlar kullanarak bir çocuğun mücadelesini anlatacağız.
 # Hedef Kitle
 Dijital video oyuncuları
 
-### Product Backlog
-URL![trello ss](https://user-images.githubusercontent.com/104438447/167482252-b5f45b51-04d7-4259-8703-6f110449fccb.png)
+# Product Backlog URL
+![trello ss](https://user-images.githubusercontent.com/104438447/167482252-b5f45b51-04d7-4259-8703-6f110449fccb.png)
 ![ss](https://user-images.githubusercontent.com/104438447/167482529-d9e34ebf-5fc7-408c-b6a3-45e42b9bb67a.png)
 ![sss](https://user-images.githubusercontent.com/104438447/167482810-849fa709-38cb-4422-a299-10e3ee460a79.png)
