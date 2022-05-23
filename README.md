@@ -47,7 +47,7 @@ Sprint görevleri sprint başında yapılan toplantıda belirlenmiş olup. Trell
 ### Sprint board: 
 ![trello görev listesi](https://user-images.githubusercontent.com/102957660/169888138-8e3a2fac-20c8-49d7-b695-0f7e1ee2d324.png)
 
-### Ürün 2.sprint tamamlanan görevler.
+### Ürün 2.sprint tamamlanan görevler:
 #### Hikaye ve oynanış akışı:
 * Karakterlere karar verildi, referansları iletildi. 
 * Hikaye oluşturuldu.
