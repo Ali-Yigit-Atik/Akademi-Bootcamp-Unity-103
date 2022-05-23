@@ -86,8 +86,8 @@ Sprint görevleri sprint başında yapılan toplantıda belirlenmiş olup. Trell
 Bu sprintte her takım üyesi kendi görevlerini ayrı olarak icra edecek şekilde planlanmış ve 3.sprintte birleştirmeye hazır kod ve tasarımlar oluşturulmuştur.
 
 ### Sprint Retrospective:
--Daha sık iletişime geçme kararı alındı.
--Proje görevleri üzerine harcanan zaman artırılmalı.
+* Daha sık iletişime geçme kararı alındı.
+* Proje görevleri üzerine harcanan zaman artırılmalı.
 
 
 
