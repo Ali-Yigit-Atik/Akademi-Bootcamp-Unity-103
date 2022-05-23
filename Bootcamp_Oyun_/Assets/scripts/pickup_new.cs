@@ -5,9 +5,12 @@ using UnityEngine;
 public class pickup_new : MonoBehaviour
 {
     private inventory_new inventory_;
-    //public GameObject itemButton;
 
-    //public static GameObject EmptyObj; 
+    public GameObject pickup_particle;
+
+    private AudioSource audioSource_;
+
+    public AudioClip pickUp_sound;
 
     private bool mouse_enter = false;
 
@@ -23,8 +26,10 @@ public class pickup_new : MonoBehaviour
     private void Awake()
     {
         this.gameObject.GetComponent<drag_movement_new>().enabled = false;
-        //itemButton = this.gameObject;
-        
+        audioSource_ = this.gameObject.GetComponent<AudioSource>(); // 
+        audioSource_.clip = pickUp_sound; //
+
+
     }
 
     private void Start()
@@ -36,7 +41,7 @@ public class pickup_new : MonoBehaviour
 
         Debug.Log("nesne boyutu "+object_dimension);
 
-        //EmptyObj = new GameObject("name");
+        
 
     }
 
@@ -74,7 +79,8 @@ public class pickup_new : MonoBehaviour
 
                         transform.localScale = new Vector3((float) object_dimension.x / 2f, (float) object_dimension.y/ 2f, object_dimension.z);
 
-                       
+
+                        Instantiate(pickup_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
 
                         
                         Debug.Log("yeni nesne boyutu " + transform.localScale);
@@ -82,6 +88,7 @@ public class pickup_new : MonoBehaviour
 
                         firstTimeInIventory = false;
 
+                        audioSource_.Play();  //
                         
                         this.gameObject.GetComponent<drag_movement_new>().enabled = true;
                         break;

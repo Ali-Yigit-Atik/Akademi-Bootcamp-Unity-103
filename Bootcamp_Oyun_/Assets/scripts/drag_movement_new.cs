@@ -6,6 +6,14 @@ public class drag_movement_new : MonoBehaviour
 {
     private inventory_new inventory_;
     public GameObject target;
+    public GameObject drop_particle;
+    ParticleSystem dropParticle;
+
+    private AudioSource audioSource_;
+    public AudioClip drop_sound;
+
+    private bool firstTimeSound = true;
+
     private bool moving;
     private bool finish;
 
@@ -15,16 +23,21 @@ public class drag_movement_new : MonoBehaviour
     private float startPosY;
 
     private Vector3 resetPosition;
-    public static Vector3 mousePos_local;
+    private Vector3 mousePos_local;
 
     private bool mouseUp = false;
     private bool mouseDown = false;
 
     private bool isOnMouseEnter = false;
 
-    public static bool place_correct=false;
+    private bool place_correct = false;
 
     private int Slot_index_;
+
+    private bool isFirsTime = true;
+    private bool deneme = true;
+
+    private bool isInTarget = false;
 
     private void Start()
     {
@@ -32,7 +45,10 @@ public class drag_movement_new : MonoBehaviour
         resetPosition = this.transform.position;
         inventory_ = GameObject.FindGameObjectWithTag("player").GetComponent<inventory_new>();
 
-        
+        audioSource_ = target.GetComponent<AudioSource>(); // 
+        audioSource_.clip = drop_sound; //
+
+
 
 
 
@@ -64,9 +80,9 @@ public class drag_movement_new : MonoBehaviour
 
         // taþýnabilir nesnenin hangi slot'a gittiðini bulmak(yukarýdaki kodu for döngüsüyle yazdým bu kod daha iyi) 
 
-        for (int i =0; i<= inventory_.slots.Length-1; i++)
+        for (int i = 0; i <= inventory_.slots.Length - 1; i++)
         {
-            if(this.gameObject.transform.position == inventory_.slots[i].transform.position && this.isOnMouseEnter == true)
+            if (this.gameObject.transform.position == inventory_.slots[i].transform.position && this.isOnMouseEnter == true)
             {
                 this.Slot_index_ = i;
             }
@@ -78,7 +94,7 @@ public class drag_movement_new : MonoBehaviour
         //    inventory_.isFull[this.Slot_index_] = false; 
         //}
 
-            if (Right_Move1.isRightMove == true )
+        if (Right_Move1.isRightMove == true)
         {
             //this.gameObject.transform.localPosition= new Vector3(this.gameObject.transform.localPosition.x + Right_Move1.rigthMovement, this.gameObject.transform.localPosition.y);
             //resetPosition = this.transform.localPosition;
@@ -104,12 +120,23 @@ public class drag_movement_new : MonoBehaviour
             }
         }
 
+
+        
+
         mouseUp_And_down();
+
+        if (this.isInTarget == true)  //
+        {
+            StartCoroutine(this.drop_particle_effect()); //
+        }  // 
 
         //if(this.finish == true && this.isOnMouseEnter == false)
         //{
         //    this.gameObject.GetComponent<drag_movement_new>().enabled = false;
         //}
+
+        //drop_particle_effect();
+
 
     }
 
@@ -160,17 +187,44 @@ public class drag_movement_new : MonoBehaviour
     {
         this.isOnMouseEnter = false;
     }
+
+    private IEnumerator drop_particle_effect()  // 
+    {
+        
+        yield return new WaitForSeconds(1.5f); // 
+
+        this.isInTarget = false; //
+
+
+        // if (this.drop_particle.activeSelf && this.isOnMouseEnter == true && this.mouseDown == true && this.mouseUp == false)
+        // {
+        //     //this.drop_particle.SetActive(false);
+        //     //this.isInTarget = false;
+        //     Debug.Log("IEnumerator çalýþdý xx");
+        //     this.drop_particle.SetActive(false);
+        // }
+
+
+    }
     void mouseUp_And_down()
     {
+        
 
         this.gameObject.GetComponent<pickup_new>().enabled = false;  //Burada pickup scriptini etkisiz hale getirdim bug olmamasý için
+
+        
+        
+        
+        
+
+
 
         if (this.isOnMouseEnter == true && this.mouseDown == true && this.mouseUp == false)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                transform.localScale = new Vector3((float)pickup_new.object_dimension.x, (float)pickup_new.object_dimension.y, pickup_new.object_dimension.z);
-                
+                this.gameObject.transform.localScale = new Vector3((float)pickup_new.object_dimension.x, (float)pickup_new.object_dimension.y, pickup_new.object_dimension.z);
+
                 Vector3 mousePos;
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -179,29 +233,65 @@ public class drag_movement_new : MonoBehaviour
 
                 this.moving = true;
             }
+
+            if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
+                Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
+            {
+                if (this.isFirsTime == true)
+                {
+                    Instantiate(this.drop_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
+                    this.isFirsTime = false;
+                    
+                    deneme = false;
+
+                }
+                this.drop_particle.SetActive(true);
+
+                
+                this.isInTarget = true;
+
+
+
+            }
+
+            else if (Mathf.Abs(this.transform.position.x - target.transform.position.x) > 0.5f &&  // Local'leri world position'a çevirdim
+                    Mathf.Abs(this.transform.position.y - target.transform.position.y) > 0.5f) // Local'leri world position'a çevirdim
+            {
+                if (this.isInTarget = false && drop_particle.activeSelf && this.gameObject.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>()) == false) 
+                { 
+                    drop_particle.SetActive(false);
+                    //Invoke("deneme_", 1);
+                    //deneme = true;
+                }
+            }
         }
 
         if (this.mouseUp == true && this.mouseDown == false)
         {
             this.moving = false;
 
-            if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
+            
+
+                if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
                 Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
             {
 
-                
+
                 this.transform.position = target.transform.position; //Local'leri world position'a çevirdim
 
+                                
 
-                //Destroy(pickup_new.EmptyObj.transform.parent.GetChild(0));
-                //inventory_.isFull[this.Slot_index_] = false; 
-
-                //Debug.Log("inventory: "+inventory_.isFull[slot_index__]);
-
-                //inventory_empty();
 
                 place_correct = true;
                 //transform.parent = null;
+
+
+
+                if (firstTimeSound == true)
+                {
+                    audioSource_.Play(); //
+                    firstTimeSound = false;
+                }
 
                 this.finish = true;
 
@@ -211,17 +301,17 @@ public class drag_movement_new : MonoBehaviour
                     inventory_.isFull[this.Slot_index_] = false;
                 }
 
-                if(this.gameObject.transform.childCount ==1)   // Game objenin içindeki ipucu iþaretlerini silme
+                if (this.gameObject.transform.childCount == 3)   // Game objenin içindeki ipucu iþaretlerini silme ve particle effecti setactive(false) yapma
                 {
                     Debug.Log("child var");
                     Destroy(this.gameObject.transform.GetChild(0).gameObject);
+                    this.gameObject.transform.GetChild(1).gameObject.SetActive(false); // 
 
-                    
                 }
 
                 if (this.target.transform.childCount == 1) // target obejenin içindeki ipucu iþaretlerini silme
                 {
-                    
+
 
                     Destroy(this.target.transform.GetChild(0).gameObject);
                 }
@@ -230,17 +320,24 @@ public class drag_movement_new : MonoBehaviour
             else
             {
                 this.transform.position = resetPosition;
-                transform.localScale = new Vector3((float) pickup_new.object_dimension.x / 2f, (float) pickup_new.object_dimension.y / 2f, pickup_new.object_dimension.z);
+                this.gameObject.transform.localScale = new Vector3((float)pickup_new.object_dimension.x / 2f, (float)pickup_new.object_dimension.y / 2f, pickup_new.object_dimension.z);
 
-               //if ((Mathf.Abs(this.transform.localPosition.x - target.transform.localPosition.x) >= 0.5f &&
-               //Mathf.Abs(this.transform.localPosition.y - target.transform.localPosition.y) >= 0.5f)) 
-               //{ inventory_.isFull[pickup_new.slot_Index] = true; }
-                
+                //if ((Mathf.Abs(this.transform.localPosition.x - target.transform.localPosition.x) >= 0.5f &&
+                //Mathf.Abs(this.transform.localPosition.y - target.transform.localPosition.y) >= 0.5f)) 
+                //{ inventory_.isFull[pickup_new.slot_Index] = true; }
+
                 place_correct = false;
 
                 this.finish = false;
+                                
             }
         }
+    }
+
+
+    void deneme_()
+    {
+        deneme = false;
     }
 
     void inventory_empty()
