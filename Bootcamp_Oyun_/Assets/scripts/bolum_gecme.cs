@@ -22,6 +22,7 @@ public class bolum_gecme : MonoBehaviour
         
     }
 
+  
 
     private void OnMouseEnter()
     {

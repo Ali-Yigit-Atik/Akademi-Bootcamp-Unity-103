@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Right_Move1 : MonoBehaviour
 {
-    public bool onenter = false;
+    public static bool onenter = false;
     public int speed = 5;
     public SpriteRenderer sr;
 
@@ -13,15 +13,25 @@ public class Right_Move1 : MonoBehaviour
 
     public Color redish;
 
+    public GameObject rightWall; // kameranýn saða gitmesini engelleyecek olan engel
+
+    public static float rightArrowPosition;
+    public static float rightWallPosition;
+
+    private float widht;
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        widht = rightWall.GetComponent<Collider2D>().bounds.size.x;
     }
 
     private void Update()
     {
-        
-        if (onenter == true && Input.GetMouseButton(0))
+        rightArrowPosition=this.gameObject.transform.position.x;
+        rightWallPosition = rightWall.transform.position.x - widht/2;
+
+        if (onenter == true && Input.GetMouseButton(0) && this.gameObject.transform.position.x < rightWall.transform.position.x - widht / 2)
         {
             rigthMovement = (1 * speed * Time.deltaTime);//
             gameObject.transform.parent.transform.position = new Vector3(gameObject.transform.parent.transform.position.x + rigthMovement, gameObject.transform.parent.transform.position.y);

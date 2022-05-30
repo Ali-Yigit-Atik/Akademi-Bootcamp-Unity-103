@@ -16,8 +16,8 @@ public class hider_objects : MonoBehaviour
     private void Awake()
     {
         //saklanan_nesne =GameObject.GetComponent<Collider2D>();
-        saklanan_nesne.gameObject.GetComponent<Collider2D>().enabled = false;
-        
+        //saklanan_nesne.gameObject.GetComponent<Collider2D>().enabled = false;
+        saklanan_nesne.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -26,9 +26,13 @@ public class hider_objects : MonoBehaviour
         {
             this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + x, this.gameObject.transform.position.y + y, this.gameObject.transform.position.z);
 
-            saklanan_nesne.gameObject.GetComponent<Collider2D>().enabled = true;
+            //saklanan_nesne.gameObject.GetComponent<Collider2D>().enabled = true;
+            saklanan_nesne.gameObject.SetActive(true);
 
             isFirstTimeTouched = false;
+
+            this.gameObject.GetComponent<mouse_effect>().enabled = false;
+            this.gameObject.tag = "Untagged";
 
             if (this.gameObject.transform.childCount == 1)   // Game objenin içindeki ipucu iþaretlerini silme
             {

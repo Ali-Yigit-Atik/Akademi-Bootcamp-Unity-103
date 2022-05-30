@@ -17,11 +17,15 @@ public class pickup_new : MonoBehaviour
     private bool firstTimeInIventory = true; //
     //public Texture2D selftexture;
 
+    public float inventory_scale=0.5f;
+
     public static Vector3 object_dimension;
 
     public static int slot_Index;
 
     private pickup_new pickUp; //
+
+    private GameObject player_;
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class pickup_new : MonoBehaviour
 
         Debug.Log("nesne boyutu "+object_dimension);
 
-        
+        player_= GameObject.FindGameObjectWithTag("player");
 
     }
 
@@ -77,12 +81,15 @@ public class pickup_new : MonoBehaviour
 
                         //Instantiate(itemButton, inventory_.slots[i].transform.position, Quaternion.identity, inventory_.slots[i].transform);
 
-                        transform.localScale = new Vector3((float) object_dimension.x / 2f, (float) object_dimension.y/ 2f, object_dimension.z);
+                        //transform.localScale = new Vector3((float) object_dimension.x * 0.5f, (float) object_dimension.y *0.5f, object_dimension.z);
 
+                        transform.localScale=transform.localScale * inventory_scale;
 
                         Instantiate(pickup_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
 
-                        
+
+                        //this.gameObject.transform.SetParent(player_.transform); gerek kalmadý
+
                         Debug.Log("yeni nesne boyutu " + transform.localScale);
 
 

@@ -8,6 +8,7 @@ TagManager:
   - player
   - slot
   - inventory
+  - not_moving_area
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: ontaraf
     uniqueID: 3724524141
+    locked: 0
+  - name: karakter_UI
+    uniqueID: 1151943119
     locked: 0

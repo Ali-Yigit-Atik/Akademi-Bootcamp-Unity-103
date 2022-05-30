@@ -6,8 +6,8 @@ public class drag_movement_new : MonoBehaviour
 {
     private inventory_new inventory_;
     public GameObject target;
-    public GameObject drop_particle;
-    ParticleSystem dropParticle;
+    //public GameObject drop_particle;
+    //ParticleSystem dropParticle;
 
     private AudioSource audioSource_;
     public AudioClip drop_sound;
@@ -25,6 +25,8 @@ public class drag_movement_new : MonoBehaviour
     private Vector3 resetPosition;
     private Vector3 mousePos_local;
 
+    private Vector3 gameoObjectScale;
+
     private bool mouseUp = false;
     private bool mouseDown = false;
 
@@ -39,6 +41,8 @@ public class drag_movement_new : MonoBehaviour
 
     private bool isInTarget = false;
 
+    private float inventoryScale;
+
     private void Start()
     {
         //resetPosition = this.transform.localPosition;
@@ -48,9 +52,9 @@ public class drag_movement_new : MonoBehaviour
         audioSource_ = target.GetComponent<AudioSource>(); // 
         audioSource_.clip = drop_sound; //
 
+        gameoObjectScale = this.gameObject.transform.localScale;
 
-
-
+        inventoryScale = this.gameObject.GetComponent<pickup_new>().inventory_scale;
 
         //inventory__ = GameObject.FindGameObjectWithTag("inventory");
     }
@@ -88,24 +92,21 @@ public class drag_movement_new : MonoBehaviour
             }
         }
 
-        //if (this.isOnMouseEnter == true && this.finish == true)  // slot'lar boþaldý mý? komutu
-        //{ 
-        //    Debug.Log(this.Slot_index_); 
-        //    inventory_.isFull[this.Slot_index_] = false; 
-        //}
-
-        if (Right_Move1.isRightMove == true)
+        if (this.finish == false)
         {
-            //this.gameObject.transform.localPosition= new Vector3(this.gameObject.transform.localPosition.x + Right_Move1.rigthMovement, this.gameObject.transform.localPosition.y);
-            //resetPosition = this.transform.localPosition;
+            if (Right_Move1.onenter == true && Right_Move1.isRightMove == true && Right_Move1.rightArrowPosition < Right_Move1.rightWallPosition)
+            {
+                //this.gameObject.transform.localPosition= new Vector3(this.gameObject.transform.localPosition.x + Right_Move1.rigthMovement, this.gameObject.transform.localPosition.y);
+                //resetPosition = this.transform.localPosition;
 
-            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + Right_Move1.rigthMovement, this.gameObject.transform.position.y); //Local'leri world position'a çevirdim
-            resetPosition = this.transform.position;  //Local'leri world position'a çevirdim
-        }
-        else if (left_move.isLeftMove == true)
-        {
-            this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + left_move.leftMovement, this.gameObject.transform.position.y); //Local'leri world position'a çevirdim
-            resetPosition = this.transform.position;  //Local'leri world position'a çevirdim
+                this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + Right_Move1.rigthMovement, this.gameObject.transform.position.y); //Local'leri world position'a çevirdim
+                resetPosition = this.transform.position;  //Local'leri world position'a çevirdim
+            }
+            else if (left_move.onenter == true && left_move.isLeftMove == true && left_move.leftArrowPosition > left_move.leftWallPosition)
+            {
+                this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + left_move.leftMovement, this.gameObject.transform.position.y); //Local'leri world position'a çevirdim
+                resetPosition = this.transform.position;  //Local'leri world position'a çevirdim
+            }
         }
 
         if (this.finish == false)
@@ -120,15 +121,23 @@ public class drag_movement_new : MonoBehaviour
             }
         }
 
+        //if (this.isOnMouseEnter == true && this.finish == true)  // slot'lar boþaldý mý? komutu
+        //{ 
+        //    Debug.Log(this.Slot_index_); 
+        //    inventory_.isFull[this.Slot_index_] = false; 
+        //}
 
-        
+
+
+
+
 
         mouseUp_And_down();
 
-        if (this.isInTarget == true)  //
-        {
-            StartCoroutine(this.drop_particle_effect()); //
-        }  // 
+        //if (this.isInTarget == true)  //
+        //{
+        //    StartCoroutine(this.drop_particle_effect()); //
+        //}  // 
 
         //if(this.finish == true && this.isOnMouseEnter == false)
         //{
@@ -139,6 +148,9 @@ public class drag_movement_new : MonoBehaviour
 
 
     }
+    
+
+
 
     private void OnMouseDown()
     {
@@ -188,24 +200,24 @@ public class drag_movement_new : MonoBehaviour
         this.isOnMouseEnter = false;
     }
 
-    private IEnumerator drop_particle_effect()  // 
-    {
-        
-        yield return new WaitForSeconds(1.5f); // 
-
-        this.isInTarget = false; //
-
-
-        // if (this.drop_particle.activeSelf && this.isOnMouseEnter == true && this.mouseDown == true && this.mouseUp == false)
-        // {
-        //     //this.drop_particle.SetActive(false);
-        //     //this.isInTarget = false;
-        //     Debug.Log("IEnumerator çalýþdý xx");
-        //     this.drop_particle.SetActive(false);
-        // }
-
-
-    }
+   //private IEnumerator drop_particle_effect()  // 
+   //{
+   //    
+   //    yield return new WaitForSeconds(1.5f); // 
+   //
+   //    this.isInTarget = false; //
+   //
+   //
+   //    // if (this.drop_particle.activeSelf && this.isOnMouseEnter == true && this.mouseDown == true && this.mouseUp == false)
+   //    // {
+   //    //     //this.drop_particle.SetActive(false);
+   //    //     //this.isInTarget = false;
+   //    //     Debug.Log("IEnumerator çalýþdý xx");
+   //    //     this.drop_particle.SetActive(false);
+   //    // }
+   //
+   //
+   //}
     void mouseUp_And_down()
     {
         
@@ -223,7 +235,10 @@ public class drag_movement_new : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                this.gameObject.transform.localScale = new Vector3((float)pickup_new.object_dimension.x, (float)pickup_new.object_dimension.y, pickup_new.object_dimension.z);
+
+                
+
+                this.gameObject.transform.localScale = new Vector3(gameoObjectScale.x/ inventoryScale, gameoObjectScale.y / inventoryScale, gameoObjectScale.z);
 
                 Vector3 mousePos;
                 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -234,36 +249,36 @@ public class drag_movement_new : MonoBehaviour
                 this.moving = true;
             }
 
-            if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
-                Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
-            {
-                if (this.isFirsTime == true)
-                {
-                    Instantiate(this.drop_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
-                    this.isFirsTime = false;
-                    
-                    deneme = false;
+            //if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
+            //    Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
+            //{
+            //    if (this.isFirsTime == true)
+            //    {
+            //        Instantiate(this.drop_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
+            //        this.isFirsTime = false;
+            //        
+            //        deneme = false;
+            //
+            //    }
+            //    this.drop_particle.SetActive(true);
+            //
+            //    
+            //    this.isInTarget = true;
+            //
+            //
+            //
+            //}
 
-                }
-                this.drop_particle.SetActive(true);
-
-                
-                this.isInTarget = true;
-
-
-
-            }
-
-            else if (Mathf.Abs(this.transform.position.x - target.transform.position.x) > 0.5f &&  // Local'leri world position'a çevirdim
-                    Mathf.Abs(this.transform.position.y - target.transform.position.y) > 0.5f) // Local'leri world position'a çevirdim
-            {
-                if (this.isInTarget = false && drop_particle.activeSelf && this.gameObject.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>()) == false) 
-                { 
-                    drop_particle.SetActive(false);
-                    //Invoke("deneme_", 1);
-                    //deneme = true;
-                }
-            }
+            //else if (Mathf.Abs(this.transform.position.x - target.transform.position.x) > 0.5f &&  // Local'leri world position'a çevirdim
+            //        Mathf.Abs(this.transform.position.y - target.transform.position.y) > 0.5f) // Local'leri world position'a çevirdim
+            //{
+            //    if (this.isInTarget = false && drop_particle.activeSelf && this.gameObject.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>()) == false) 
+            //    { 
+            //        drop_particle.SetActive(false);
+            //        //Invoke("deneme_", 1);
+            //        //deneme = true;
+            //    }
+            //}
         }
 
         if (this.mouseUp == true && this.mouseDown == false)
@@ -271,6 +286,8 @@ public class drag_movement_new : MonoBehaviour
             this.moving = false;
 
             
+
+
 
                 if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
                 Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
@@ -301,7 +318,7 @@ public class drag_movement_new : MonoBehaviour
                     inventory_.isFull[this.Slot_index_] = false;
                 }
 
-                if (this.gameObject.transform.childCount == 3)   // Game objenin içindeki ipucu iþaretlerini silme ve particle effecti setactive(false) yapma
+                if (this.gameObject.transform.childCount == 2)   // Game objenin içindeki ipucu iþaretlerini silme ve particle effecti setactive(false) yapma
                 {
                     Debug.Log("child var");
                     Destroy(this.gameObject.transform.GetChild(0).gameObject);
@@ -320,11 +337,13 @@ public class drag_movement_new : MonoBehaviour
             else
             {
                 this.transform.position = resetPosition;
-                this.gameObject.transform.localScale = new Vector3((float)pickup_new.object_dimension.x / 2f, (float)pickup_new.object_dimension.y / 2f, pickup_new.object_dimension.z);
+                //this.gameObject.transform.localScale = new Vector3((float)pickup_new.object_dimension.x / 2f, (float)pickup_new.object_dimension.y / 2f, pickup_new.object_dimension.z);
 
-                //if ((Mathf.Abs(this.transform.localPosition.x - target.transform.localPosition.x) >= 0.5f &&
-                //Mathf.Abs(this.transform.localPosition.y - target.transform.localPosition.y) >= 0.5f)) 
-                //{ inventory_.isFull[pickup_new.slot_Index] = true; }
+                transform.localScale = gameoObjectScale;
+
+               //if ((Mathf.Abs(this.transform.localPosition.x - target.transform.localPosition.x) >= 0.5f &&
+               //Mathf.Abs(this.transform.localPosition.y - target.transform.localPosition.y) >= 0.5f)) 
+               //{ inventory_.isFull[pickup_new.slot_Index] = true; }
 
                 place_correct = false;
 
