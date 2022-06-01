@@ -4,86 +4,89 @@ using UnityEngine;
 
 public class pickup_new : MonoBehaviour
 {
-    private inventory_new inventory_;
+    private inventory_new inventory_; // inventory_new içindeki slots'lara ulaþmak için tanýmlandý
 
-    public GameObject pickup_particle;
+    public GameObject pickup_particle; // nesne envantere alýnýrken çýkacak olan particle
 
     private AudioSource audioSource_;
 
-    public AudioClip pickUp_sound;
+    public AudioClip pickUp_sound; // nesne envantere alýnýrken çalacak olan audio clip
 
-    private bool mouse_enter = false;
+    private bool isMouseEnter = false; // Mouse nesnenin üzerinde mi
 
-    private bool firstTimeInIventory = true; //
-    //public Texture2D selftexture;
+    private bool firstTimeInIventory = true; // nesne ilk defa mý envantere alýnacak
+    
 
-    public float inventory_scale=0.5f;
+    public float inventory_scale=0.5f; // nesnenin envanter içindeki küçülme oraný
 
-    public static Vector3 object_dimension;
+    //public static Vector3 object_dimension;
 
-    public static int slot_Index;
+    //public static int slot_Index;
 
-    private pickup_new pickUp; //
+    //private pickup_new pickUp; //
 
-    private GameObject player_;
+    //private GameObject player_;
 
     private void Awake()
     {
-        this.gameObject.GetComponent<drag_movement_new>().enabled = false;
-        audioSource_ = this.gameObject.GetComponent<AudioSource>(); // 
-        audioSource_.clip = pickUp_sound; //
+        this.gameObject.GetComponent<drag_movement_new>().enabled = false; // drag_movement_new scriptini baþlangýçta bug olmamasý için kapatýlmasý
+        audioSource_ = this.gameObject.GetComponent<AudioSource>();  // belleðe yazma
+        audioSource_.clip = pickUp_sound; // //audio source kompanentine audio clip atandý
 
 
     }
 
     private void Start()
     {
-        inventory_ = GameObject.FindGameObjectWithTag("player").GetComponent<inventory_new>();
-        pickUp = GetComponent<pickup_new>(); //
+        inventory_ = GameObject.FindGameObjectWithTag("player").GetComponent<inventory_new>(); // inventory_new içindeki slots'lara ulaþmak için tanýmlandý
+        
+        //pickUp = GetComponent<pickup_new>(); //
 
-        object_dimension = new Vector3((float) transform.localScale.x, (float)transform.localScale.y, transform.localScale.z);
+        //object_dimension = new Vector3((float) transform.localScale.x, (float)transform.localScale.y, transform.localScale.z);
 
-        Debug.Log("nesne boyutu "+object_dimension);
+        //Debug.Log("nesne boyutu "+object_dimension);
 
-        player_= GameObject.FindGameObjectWithTag("player");
+        //player_= GameObject.FindGameObjectWithTag("player");
 
     }
 
     private void Update()
     {
-        if (firstTimeInIventory == true)
+        if (firstTimeInIventory == true) // nesne ilk defa envantere alýnacaksa pick_up komutu çalýþtýrýlsýn
         {
             pick_up();
         }
     }
 
+    // nesneyi envantere alma fonksiyonu
     private void pick_up()
     {
-        if (mouse_enter == true)
+        if (isMouseEnter == true) // mouse objenin üzerindeyse çalýþtýr
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0)) // mouse'un sol tuþuna basýldýysa çalýþtýr
             {
                 
+                // Envanterdeki tüm slotlara bak ve boþ olan ilk slota alýnacak olan nesneyi gönder
 
                 for (int i = 0; i < inventory_.slots.Length; i++)
                 {
-                    if (inventory_.isFull[i] == false)
+                    if (inventory_.isFull[i] == false) // envanter boþ ise nesneyi envantere al
                     {
 
-                        inventory_.isFull[i] = true;
+                        inventory_.isFull[i] = true; // envanter artýk dolu
 
-                        slot_Index = i;
+                        //slot_Index = i;
 
                         //this.gameObject.transform.SetParent(inventory_.slots[i].transform);
                         //transform.TransformPoint(Vector3.zero);
 
-                        this.gameObject.transform.position = inventory_.slots[i].transform.position;
+                        this.gameObject.transform.position = inventory_.slots[i].transform.position; // nesneyi slot'un pozisyonuna atama
 
                         //Instantiate(itemButton, inventory_.slots[i].transform.position, Quaternion.identity, inventory_.slots[i].transform);
 
                         //transform.localScale = new Vector3((float) object_dimension.x * 0.5f, (float) object_dimension.y *0.5f, object_dimension.z);
 
-                        transform.localScale=transform.localScale * inventory_scale;
+                        transform.localScale=transform.localScale * inventory_scale; // nesneyi slot içine sýðdýrmak için küçültme
 
                         Instantiate(pickup_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
 
@@ -93,12 +96,12 @@ public class pickup_new : MonoBehaviour
                         Debug.Log("yeni nesne boyutu " + transform.localScale);
 
 
-                        firstTimeInIventory = false;
+                        firstTimeInIventory = false; // envantere nesne alýndý
 
-                        audioSource_.Play();  //
+                        audioSource_.Play();  // envantere nesne alýrken ses klibini oynat
                         
-                        this.gameObject.GetComponent<drag_movement_new>().enabled = true;
-                        break;
+                        this.gameObject.GetComponent<drag_movement_new>().enabled = true; //drag_movement_new scriptini aktif hale getir
+                        break; // döngüyü durdur
                     }
                 }
             }
@@ -108,12 +111,12 @@ public class pickup_new : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        mouse_enter = true;
+        isMouseEnter = true;
     }
 
     private void OnMouseExit()
     {
-        mouse_enter = false;
+        isMouseEnter = false;
     }
 
     

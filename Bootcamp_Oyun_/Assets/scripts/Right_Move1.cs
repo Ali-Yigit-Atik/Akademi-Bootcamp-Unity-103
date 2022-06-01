@@ -4,56 +4,62 @@ using UnityEngine;
 
 public class Right_Move1 : MonoBehaviour
 {
-    public static bool onenter = false;
-    public int speed = 5;
+    public static bool onenter = false; //mouse nesnenin üzerinde mi
+    public int speed = 5; // hýz
+
     public SpriteRenderer sr;
+    public Color redish; //ok tuþuna basýldýðýnda ok tuþunun alacaðý renk
 
-    public static bool isRightMove = false;//
-    public static float rigthMovement;//
+    public static bool isRightMove = false; // hareket ediyor mu
+    public static float rigthMovement; //// hareket miktari
 
-    public Color redish;
 
     public GameObject rightWall; // kameranýn saða gitmesini engelleyecek olan engel
 
-    public static float rightArrowPosition;
-    public static float rightWallPosition;
+    public static float rightArrowPosition; // okun pozisyonu
+    public static float rightWallPosition; // duvarýn pozisyonu
 
-    private float widht;
+    private float widht; // duvarýn(engelin) geniþliði
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        widht = rightWall.GetComponent<Collider2D>().bounds.size.x;
+        sr = GetComponent<SpriteRenderer>(); // belleðe yazma
+        widht = rightWall.GetComponent<Collider2D>().bounds.size.x; // duvarýn geniþliðini atama
     }
 
     private void Update()
     {
-        rightArrowPosition=this.gameObject.transform.position.x;
-        rightWallPosition = rightWall.transform.position.x - widht/2;
+        rightArrowPosition=this.gameObject.transform.position.x; // okun pozisyonunu atama
+        rightWallPosition = rightWall.transform.position.x - widht/2;  // duvarýn okla etkileþime geçtiði pozisyonu atama
+
+        // oka basýldýðýnda sað tarafa hareket etsin
 
         if (onenter == true && Input.GetMouseButton(0) && this.gameObject.transform.position.x < rightWall.transform.position.x - widht / 2)
         {
-            rigthMovement = (1 * speed * Time.deltaTime);//
+            rigthMovement = (1 * speed * Time.deltaTime); // hareket miktarýný hesapla
+
+            // karakterin ve kameranýn yeni pozisyonunu atama:
             gameObject.transform.parent.transform.position = new Vector3(gameObject.transform.parent.transform.position.x + rigthMovement, gameObject.transform.parent.transform.position.y);
-            sr.color = redish;
-            isRightMove = true;//
+            
+            sr.color = redish; // oka basýlý tutulduðunda rengi deðiþsin
+            isRightMove = true;// sað tarafa hareket ediyor
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) // mouse tuþuna basýlma kesildiðinde
         {
-            sr.color = Color.white;
-            isRightMove = false;//
+            sr.color = Color.white; // okun rengi eski haline dönsün
+            isRightMove = false;  // hareket etmiyor
         }
     }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(3, 3, 1);
-        onenter = true;
+        transform.localScale = new Vector3(3, 3, 1); // mouse ok üzerindeyken ok büyüsün
+        onenter = true; // mouse ok iþaretinin üzerinde
     }
 
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(2, 2, 1);
-        onenter = false;
+        transform.localScale = new Vector3(2, 2, 1); // mouse ok üzerinde deðilken eski boyutunda olsun
+        onenter = false;  // mouse ok üzerinde deðil
     }
 }

@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class bolum_gecme : MonoBehaviour
 {
-    private bool onenter = false;
+    private bool onenter = false; // mouse bolum geçme kapýsýnýn üstünde mi
 
-    public string bolum_ismi="";
+    public string sceneName=""; // gidilecek sahnenin adý
 
 
     private void Update()
     {
 
+        // // mouse bolum geçme kapýsýnýn üstünde ve mouse'un sol tuþuna basýlýyorsa sahneyi yükle
         if (onenter == true && Input.GetMouseButtonDown(0))
         {
 
-            SceneManager.LoadScene(bolum_ismi);
+            SceneManager.LoadScene(sceneName); // gidilecek sahneyi yükle
         }
 
         
@@ -27,12 +28,12 @@ public class bolum_gecme : MonoBehaviour
     private void OnMouseEnter()
     {
         
-        onenter = true;
+        onenter = true;  // mouse bolum geçme kapýsýnýn üstünde
     }
 
     private void OnMouseExit()
     {
         
-        onenter = false;
+        onenter = false; // mouse bolum geçme kapýsýnýn üstünde deðil
     }
 }

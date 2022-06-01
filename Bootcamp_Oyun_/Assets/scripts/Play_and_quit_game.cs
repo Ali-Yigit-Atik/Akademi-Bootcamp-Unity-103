@@ -7,12 +7,12 @@ public class Play_and_quit_game : MonoBehaviour
 {
     public void Start_game()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // oyunu baþlatma
     }
 
     public void quit_game()
     {
         Debug.Log("quit xxxx");
-        Application.Quit();
+        Application.Quit(); // oyundan çýkma
     }
 }
