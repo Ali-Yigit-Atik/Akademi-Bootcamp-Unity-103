@@ -8,15 +8,14 @@ Puzzle adventure click and point oyun olacak.
 
 # Takım Üyeleri:
 
-    Enes Ünlü: Scrum Master
     Beyza Nur Bilgi: Product Owner
-    Ali Yiğit Atik: Team Member/Developer
+    Ali Yiğit Atik: Scrum Master/Developer
     Haktan Öztürkçü: Team Member/Developer
     Elif Nazlıcan Koca: Team Member/Developer
 
 # Oyun İsmi
 
---As Long As You Stay--
+-- As Long As You Stay --
 
 # Oyun Açıklaması:
 Soyut kavramlar kullanarak bir çocuğun mücadelesini anlatacağız. 
