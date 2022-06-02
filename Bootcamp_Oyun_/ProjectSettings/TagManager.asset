@@ -9,6 +9,7 @@ TagManager:
   - slot
   - inventory
   - not_moving_area
+  - loop particle
   layers:
   - Default
   - TransparentFX

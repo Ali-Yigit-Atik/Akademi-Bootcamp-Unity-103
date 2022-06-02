@@ -14,11 +14,16 @@ public class tree_mechanics2 : MonoBehaviour
     private Vector3 startPosition;
     private GameObject nextTree;
 
+
+    private AudioSource audioSource_;
+
+    public AudioClip movingSound; // 
+
     private void Start()
     {
         trees_mech = treesParentObject.GetComponent<tree_mechanics>();
-        
-        
+        audioSource_ = this.gameObject.GetComponent<AudioSource>();  // belleðe yazma
+        audioSource_.clip = movingSound; // 
     }
 
     private void Update()
@@ -36,6 +41,7 @@ public class tree_mechanics2 : MonoBehaviour
         if (onenter == true && Input.GetMouseButtonDown(0))
         {
             move();
+            audioSource_.Play();
         }
 
         if (Mathf.Abs(this.transform.position.x - targetPlace.transform.position.x) <= 0.5f &&

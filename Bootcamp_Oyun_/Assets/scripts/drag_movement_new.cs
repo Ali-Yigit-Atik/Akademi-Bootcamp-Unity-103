@@ -9,6 +9,14 @@ public class drag_movement_new : MonoBehaviour
     //public GameObject drop_particle;
     //ParticleSystem dropParticle;
 
+    private float targetWidth;
+    private float targetHeight;
+    private Vector3 targetCenter;
+    private Vector3 targetWorldPos;
+
+    public float kaymaMiktariX = 0;
+    public float kaymaMiktariY = 0;
+
     private AudioSource audioSource_;
     public AudioClip drop_sound;  // nesne býrakýlýrken çýkan ses klibi
 
@@ -57,6 +65,23 @@ public class drag_movement_new : MonoBehaviour
         inventoryScale = this.gameObject.GetComponent<pickup_new>().inventory_scale; // nesne envanter içindeyken % ne kadar küçüldüðü tanýmlandý
 
         //inventory__ = GameObject.FindGameObjectWithTag("inventory");
+
+        targetWidth = target.GetComponent<Collider2D>().bounds.size.x;
+        targetHeight = target.GetComponent<Collider2D>().bounds.size.y;
+        targetCenter = target.GetComponent<Collider2D>().bounds.center;
+        Debug.Log(targetCenter+"  jjj");
+
+
+        // taþýnabilir nesnenin hangi slot'a gittiðini bulmak
+        for (int i = 0; i <= inventory_.slots.Length - 1; i++)
+        {
+            if (this.gameObject.transform.position == inventory_.slots[i].transform.position )
+            {
+                this.slotIndex = i;
+            }
+        }
+
+
     }
 
     private void Update()
@@ -65,13 +90,13 @@ public class drag_movement_new : MonoBehaviour
         
         // taþýnabilir nesnenin hangi slot'a gittiðini bulmak
 
-        for (int i = 0; i <= inventory_.slots.Length - 1; i++)
-        {
-            if (this.gameObject.transform.position == inventory_.slots[i].transform.position && this.isOnMouseEnter == true)
-            {
-                this.slotIndex = i;
-            }
-        }
+        //for (int i = 0; i <= inventory_.slots.Length - 1; i++)
+        //{
+        //    if (this.gameObject.transform.position == inventory_.slots[i].transform.position && this.isOnMouseEnter == true)
+        //    {
+        //        this.slotIndex = i;
+        //    }
+        //}
 
         // Slot içindeki objeler child obje deðil yani slot'larla beraber hareket etmiyor bundan dolayý slotlarýn ve kameranýn yaptýðý pozisyon deðiþimini 
         // taþýnabilir objelere aktaran kodlar:
@@ -248,18 +273,20 @@ public class drag_movement_new : MonoBehaviour
         {
             this.moving = false;
 
+            //(Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  
+            //Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) 
             
 
                 // Nesne doðru yerde ise nesne target'e býrakýlsýn kodlarý:
 
-                if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  
-                Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) 
+                if (Mathf.Abs(this.transform.position.x - targetCenter.x) <= targetWidth/1.5 &&  
+                Mathf.Abs(this.transform.position.y - targetCenter.y) <=  targetHeight/1.5 ) 
             {
 
-                this.transform.position = target.transform.position; 
-                                               
+                this.gameObject.transform.position = new Vector3(targetCenter.x + kaymaMiktariX, targetCenter.y + kaymaMiktariY, targetCenter.z);
 
-                
+
+
                 //transform.parent = null;
 
 
