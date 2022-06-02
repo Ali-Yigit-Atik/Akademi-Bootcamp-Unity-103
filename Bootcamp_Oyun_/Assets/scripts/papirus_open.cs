@@ -26,14 +26,14 @@ public class papirus_open : MonoBehaviour
     private void Update()
     {
 
-        if (onenter == true && isFirtTime == true)
-        {
-
-            //audioSource_.Play();
-            papirusCanvas.gameObject.SetActive(true);
-            isFirtTime = false;
-
-        }
+        //if (onenter == true && isFirtTime == true)
+        //{
+        //
+        //    //audioSource_.Play();
+        //    papirusCanvas.gameObject.SetActive(true);
+        //    isFirtTime = false;
+        //
+        //}
 
         if (onenter==true && Input.GetMouseButtonDown(0))
         {
