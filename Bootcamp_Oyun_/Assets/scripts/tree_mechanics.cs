@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class tree_mechanics : MonoBehaviour
 {
-    public GameObject[] trees;
+    public GameObject[] trees; // aðaç objeleri konulacak bu array'e
     public bool[] isTargetPlacesTrue;
     private set_active setActive;
     private tip_remove tipRemove;
