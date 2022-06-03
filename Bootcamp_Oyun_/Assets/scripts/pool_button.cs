@@ -50,6 +50,8 @@ public class pool_button : MonoBehaviour
                     //Destroy(this.gameObject.transform.GetChild(i).gameObject);
                     
                     main.loop = false;
+
+                    this.gameObject.GetComponent<pool_button>().enabled = false;
                     break;
                 }
             }

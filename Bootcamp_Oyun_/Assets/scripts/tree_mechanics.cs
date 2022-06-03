@@ -6,17 +6,26 @@ public class tree_mechanics : MonoBehaviour
 {
     public GameObject[] trees; // aðaç objeleri konulacak bu array'e
     public bool[] isTargetPlacesTrue;
-    private set_active setActive;
+    //private set_active setActive;
     private tip_remove tipRemove;
+
+    public static bool isHeartTreeBroke = false;
 
     private void Awake()
     {
-        setActive = this.gameObject.GetComponent<set_active>();
-        setActive.enabled = false;
-        setActive.openedObject.SetActive(false);
+        //setActive = this.gameObject.GetComponent<set_active>();
+        //setActive.enabled = false;
+        //setActive.openedObject.SetActive(false);
 
         tipRemove = this.gameObject.GetComponent<tip_remove>();
         tipRemove.enabled = false;
+
+        for (int i = 0; i <= trees.Length - 1; i++)
+        {
+            trees[i].GetComponent<Collider2D>().enabled = false;
+            isTargetPlacesTrue[i] = false;
+        }
+        isHeartTreeBroke = false;
 
     }
 
@@ -33,8 +42,9 @@ public class tree_mechanics : MonoBehaviour
                 this.gameObject.transform.GetChild(i).gameObject.tag = "Untagged";
             }
 
-            setActive.enabled = true;
+            //setActive.enabled = true;
             tipRemove.enabled = true;
+            isHeartTreeBroke = true; ;
         }
     }
 }

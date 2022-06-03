@@ -43,13 +43,13 @@ public class ipucu_button : MonoBehaviour
     
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(3.5f, 3.5f, 1);  // mouse tips butonunun üzerindeyken buton büyüsün
+        transform.localScale = new Vector3(5.5f, 5.5f, 1);  // mouse tips butonunun üzerindeyken buton büyüsün
         onenter = true; // mouse tips butonunun üstünde
     }
     
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(2.5f, 2.5f, 1); // mouse tips butonunun üzerinde deðilken buton eski haline dönsün
+        transform.localScale = new Vector3(4f, 4f, 1); // mouse tips butonunun üzerinde deðilken buton eski haline dönsün
         onenter = false;  // mouse tips butonunun üstünde deðil
     }
 }

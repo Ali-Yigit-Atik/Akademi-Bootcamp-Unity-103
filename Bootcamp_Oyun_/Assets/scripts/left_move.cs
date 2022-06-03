@@ -6,7 +6,7 @@ public class left_move : MonoBehaviour
 {
     
     public static bool onenter=false; //mouse nesnenin üzerinde mi
-    public int speed = 5; // hýz
+    public int speed = 12; // hýz
     public SpriteRenderer sr;
     public Color redish; //ok tuþuna basýldýðýnda ok tuþunun alacaðý renk
     
@@ -59,13 +59,13 @@ public class left_move : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(3, 3, 1); // mouse ok üzerindeyken ok büyüsün
+        transform.localScale = new Vector3(4.5f, 4.5f, 1); // mouse ok üzerindeyken ok büyüsün
         onenter = true; // mouse ok iþaretinin üzerinde
     }
 
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(2, 2, 1); // mouse ok üzerinde deðilken eski boyutunda olsun
+        transform.localScale = new Vector3(3, 3, 1); // mouse ok üzerinde deðilken eski boyutunda olsun
         onenter = false; // mouse ok üzerinde deðil
     }
 

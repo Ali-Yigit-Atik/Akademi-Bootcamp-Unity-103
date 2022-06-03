@@ -10,6 +10,9 @@ TagManager:
   - inventory
   - not_moving_area
   - loop particle
+  - tables
+  - button
+  - pool
   layers:
   - Default
   - TransparentFX

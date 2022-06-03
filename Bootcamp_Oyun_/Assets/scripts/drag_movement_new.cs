@@ -50,6 +50,8 @@ public class drag_movement_new : MonoBehaviour
 
     private float inventoryScale;
 
+    private bool isInSlot =true;
+
     private void Start()
     {
         
@@ -69,8 +71,13 @@ public class drag_movement_new : MonoBehaviour
         targetWidth = target.GetComponent<Collider2D>().bounds.size.x;
         targetHeight = target.GetComponent<Collider2D>().bounds.size.y;
         targetCenter = target.GetComponent<Collider2D>().bounds.center;
-        Debug.Log(targetCenter+"  jjj");
+        
 
+        if (target.gameObject.CompareTag("pool"))
+        {
+            targetWidth = targetWidth * (1.5f / 2f); // daha iyi bir yerleþtirme kontrolü için bu oran yapýldý
+            targetHeight = targetHeight * (1.5f / 2f); // daha iyi bir yerleþtirme kontrolü için bu oran yapýldý
+        }
 
         // taþýnabilir nesnenin hangi slot'a gittiðini bulmak
         for (int i = 0; i <= inventory_.slots.Length - 1; i++)
@@ -289,6 +296,20 @@ public class drag_movement_new : MonoBehaviour
 
                 //transform.parent = null;
 
+                if (target.gameObject.CompareTag("tables") && this.finish == false)
+                {
+                    papirus_puzzle_open.totalCoffeePuzzleSolved = papirus_puzzle_open.totalCoffeePuzzleSolved + 1;
+                }
+
+                if (target.gameObject.CompareTag("button") && this.finish == false )
+                {
+                    Elevator_open.totalButtonSolved = Elevator_open.totalButtonSolved + 1;
+                }
+
+                if(target.gameObject.CompareTag("button") && this.finish == false &&  this.gameObject.transform.childCount == 3)
+                {
+                    Destroy(this.gameObject.transform.GetChild(0).gameObject);
+                }
 
                 if (firstTimeSound == true)  // nesne býrakma esnasýnda yalnýzca bir kez ses oynasýn.
                 {
@@ -298,11 +319,7 @@ public class drag_movement_new : MonoBehaviour
 
                 
 
-                if (this.isOnMouseEnter == true && this.finish == true)  // slot'lar boþaldý mý? komutu
-                {
-                    Debug.Log(this.slotIndex);
-                    inventory_.isFull[this.slotIndex] = false;
-                }
+                
 
                 if (this.gameObject.transform.childCount == 2)   // Game objenin içindeki ipucu iþaretlerini silme ve particle effecti setactive(false) yapma
                 {
@@ -321,6 +338,13 @@ public class drag_movement_new : MonoBehaviour
                 this.finish = true; //burda bir boolean yardýmyla hareket logic kurulmuþtu. Nesne yerine vardýðýna göre nesnenin mouse dan etkilenmemesi için
                                     // finish true yapýldý
 
+                if (isInSlot == true && this.finish == true)  // slot'lar boþaldý mý? komutu   (this.isOnMouseEnter == true && && this.finish == true)
+                {
+                    Debug.Log(this.slotIndex);
+                    inventory_.isFull[this.slotIndex] = false;
+                    isInSlot = false;
+                    
+                }
             }
 
             // Nesne doðru yere býrakýlmamýþsa envantere geri dönsün kodlarý:
