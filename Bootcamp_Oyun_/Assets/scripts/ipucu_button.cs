@@ -8,7 +8,10 @@ public class ipucu_button : MonoBehaviour
     public GameObject[] tips_image; // tips imagelerinin inspector da atanmasý için public game object dizisi oluþturuldu
     
     private bool onenter = false; // mouse tips butonunun üstünde mi
+    public float normalSize = 4f;
+    public float onPressSize = 5.5f;
     
+
     private void Update()
     {
         
@@ -43,13 +46,13 @@ public class ipucu_button : MonoBehaviour
     
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(5.5f, 5.5f, 1);  // mouse tips butonunun üzerindeyken buton büyüsün
+        transform.localScale = new Vector3(onPressSize, onPressSize, 1);  // mouse tips butonunun üzerindeyken buton büyüsün
         onenter = true; // mouse tips butonunun üstünde
     }
     
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(4f, 4f, 1); // mouse tips butonunun üzerinde deðilken buton eski haline dönsün
+        transform.localScale = new Vector3(normalSize, normalSize, 1); // mouse tips butonunun üzerinde deðilken buton eski haline dönsün
         onenter = false;  // mouse tips butonunun üstünde deðil
     }
 }

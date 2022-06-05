@@ -18,6 +18,7 @@ public class drag_movement_new : MonoBehaviour
     public float kaymaMiktariY = 0;
 
     private AudioSource audioSource_;
+    private AudioSource audioSource2_; //  setactive olucak targetler var bu durumda ses çýkarabilmek için targetlerin kardeþleri üzerinden ses çalýnacak
     public AudioClip drop_sound;  // nesne býrakýlýrken çýkan ses klibi
 
     private bool firstTimeSound = true;  // Nesne hedefe býrakýlýrken çýkan býrakma sesi ilk defa mý oynatýlcacak
@@ -51,6 +52,7 @@ public class drag_movement_new : MonoBehaviour
     private float inventoryScale;
 
     private bool isInSlot =true;
+    private bool isNeedDestroy = false;
 
     private void Start()
     {
@@ -61,6 +63,14 @@ public class drag_movement_new : MonoBehaviour
 
         audioSource_ = target.GetComponent<AudioSource>(); // belleðe yazýldý
         audioSource_.clip = drop_sound;  //audio souce kompanentine audio clip atandý
+
+        if (target.gameObject.CompareTag("komidin")  || target.gameObject.CompareTag("resim")) // hedef objelerin ebeveynine ses klibi atandý
+        {
+                        
+            audioSource2_ = target.transform.parent.gameObject.GetComponent<AudioSource>(); // belleðe yazýldý
+            audioSource2_.clip = drop_sound;
+            
+        }
 
         gameoObjectScale = this.gameObject.transform.localScale; // nesne envanter içindeyken olan boyutu tanýmlandý
 
@@ -293,8 +303,31 @@ public class drag_movement_new : MonoBehaviour
                 this.gameObject.transform.position = new Vector3(targetCenter.x + kaymaMiktariX, targetCenter.y + kaymaMiktariY, targetCenter.z);
 
 
+                if (target.gameObject.CompareTag("komidin") == false && target.gameObject.CompareTag("resim") == false && firstTimeSound == true)  // nesne býrakma esnasýnda yalnýzca bir kez ses oynasýn.
+                {
+                    audioSource_.Play(); //
+                    firstTimeSound = false;
+                }
 
                 //transform.parent = null;
+
+                if (target.gameObject.CompareTag("komidin") && this.finish == false) 
+                {
+                    isNeedDestroy = true;
+                    Komidin.komidinOpened = true;
+
+                    audioSource2_.Play();
+                    
+                }
+
+                if (target.gameObject.CompareTag("resim") && this.finish == false)
+                {
+                    isNeedDestroy = true;
+                    resim.pictureOpened = true;
+
+                    
+                    audioSource2_.Play();
+                }
 
                 if (target.gameObject.CompareTag("tables") && this.finish == false)
                 {
@@ -311,11 +344,7 @@ public class drag_movement_new : MonoBehaviour
                     Destroy(this.gameObject.transform.GetChild(0).gameObject);
                 }
 
-                if (firstTimeSound == true)  // nesne býrakma esnasýnda yalnýzca bir kez ses oynasýn.
-                {
-                    audioSource_.Play(); //
-                    firstTimeSound = false;
-                }
+               
 
                 
 
@@ -344,6 +373,12 @@ public class drag_movement_new : MonoBehaviour
                     inventory_.isFull[this.slotIndex] = false;
                     isInSlot = false;
                     
+                }
+
+                if(isNeedDestroy == true)
+                {
+                    //Destroy(this.gameObject);
+                    this.gameObject.SetActive(false);
                 }
             }
 

@@ -9281,7 +9281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e1003d779081c4d82798d275aa7748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: start_menu
+  sceneName: Chaphter1_end
 --- !u!114 &1041589021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23223,6 +23223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dca16e0c9556847abb1b6db1b29317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 2.5
 --- !u!82 &1914244189
 AudioSource:
   m_ObjectHideFlags: 0

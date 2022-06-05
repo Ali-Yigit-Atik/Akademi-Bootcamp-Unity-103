@@ -20,6 +20,9 @@ public class left_move : MonoBehaviour
     public static float leftArrowPosition; // okun pozisyonu
     public static float leftWallPosition; // duvarýn pozisyonu
 
+    public float normalSize = 3f;
+    public float onPressSize = 4.5f;
+
     private float widht; // duvarýn(engelin) geniþliði
 
     private void Start()
@@ -59,13 +62,13 @@ public class left_move : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        transform.localScale = new Vector3(4.5f, 4.5f, 1); // mouse ok üzerindeyken ok büyüsün
+        transform.localScale = new Vector3(onPressSize, onPressSize, 1); // mouse ok üzerindeyken ok büyüsün
         onenter = true; // mouse ok iþaretinin üzerinde
     }
 
     private void OnMouseExit()
     {
-        transform.localScale = new Vector3(3, 3, 1); // mouse ok üzerinde deðilken eski boyutunda olsun
+        transform.localScale = new Vector3(normalSize, normalSize, 1); // mouse ok üzerinde deðilken eski boyutunda olsun
         onenter = false; // mouse ok üzerinde deðil
     }
 

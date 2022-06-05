@@ -8,6 +8,7 @@ public class pool_button : MonoBehaviour
     private Vector3 startPosition;
     private ParticleSystem ps;
     private Collider2D collider_;
+    public float distance = 2.5f; //
 
     private void Start()
     {
@@ -18,13 +19,14 @@ public class pool_button : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(this.transform.position.y - startPosition.y) <= 2.5f){
+        if (Mathf.Abs(this.transform.position.y - startPosition.y) <= distance)
+        {
 
 
             transform.Translate(0, speed * Time.deltaTime, 0);
         }
 
-        if (Mathf.Abs(this.transform.position.y - startPosition.y) >= 2.5f)
+        if (Mathf.Abs(this.transform.position.y - startPosition.y) >= distance)
         {
             collider_.enabled = true;
             StartCoroutine("particle_destroy");
