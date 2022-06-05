@@ -102,7 +102,7 @@ Sprint görevleri ikinci sprit sonunda yapılan toplantı ile belirlenmiştir . 
  
 ![trello görev listesi](https://user-images.githubusercontent.com/102957660/169888138-8e3a2fac-20c8-49d7-b695-0f7e1ee2d324.png)
 
-### Ürün 2.sprint tamamlanan görevler:
+### Ürün 3.sprint tamamlanan görevler:
 #### Hikaye ve oynanış akışı:
 * Oyun içi puzzle mekaniklerine karar verildi
 * Referanslar toplandı
