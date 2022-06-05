@@ -50,28 +50,5 @@ public class anahtar_ve_mendil : MonoBehaviour
 
     }
 
-    //IEnumerator particle_destroy()
-    //{
-    //    if (this.gameObject.transform.childCount > 0)
-    //    {
-    //        for (int i = 0; i <= this.gameObject.transform.childCount - 1; i++)
-    //        {
-    //            if (this.gameObject.transform.GetChild(i).gameObject.tag == "loop particle")
-    //            {
-    //                ps = this.gameObject.transform.GetChild(i).gameObject.GetComponent<ParticleSystem>();
-    //                var main = ps.main;
-    //
-    //
-    //
-    //                yield return new WaitForSeconds(1);
-    //                //Destroy(this.gameObject.transform.GetChild(i).gameObject);
-    //
-    //                main.loop = false;
-    //
-    //                this.gameObject.GetComponent<pool_button>().enabled = false;
-    //                break;
-    //            }
-    //        }
-    //    }
-    //}
+    
 }
