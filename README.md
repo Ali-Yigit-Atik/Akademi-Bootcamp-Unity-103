@@ -93,5 +93,40 @@ Bu sprintte her takım üyesi kendi görevlerini ayrı olarak icra edecek şekil
 * Daha sık iletişime geçme kararı alındı.
 * Proje görevleri üzerine harcanan zaman artırılmalı.
 
+# Sprint 3
+
+### Sprint Notları: 
+Sprint görevleri ikinci sprit sonunda yapılan toplantı ile belirlenmiştir . Son sprint olduğundan proje baştan sona değerlendirilerek eksik kısımlar ve olası problemler not alınmıştır uygun çözümleri uygulama kararı alınmıştır. Görevler trello aksine daha çok  discord üzerinden takip edilmiş, geri bildirimler bu platform üzerinden etkili bir şekilde verilmiştir.
+
+### Sprint board: 
+ 
+![trello görev listesi](https://user-images.githubusercontent.com/102957660/169888138-8e3a2fac-20c8-49d7-b695-0f7e1ee2d324.png)
+
+### Ürün 2.sprint tamamlanan görevler:
+#### Hikaye ve oynanış akışı:
+* Oyun içi puzzle mekaniklerine karar verildi
+* Referanslar toplandı
+* Öncelikli chapterlara ve deadlinelarına karar verildi
+
+#### Kodlama kısmı:
+* Puzzle mekaniklerinin kodları 
+* Bir puzzle çözülüğünde diğer puzzle'ı aktive eden kodlar 
+* Unity içinde sahne inşası
+* Hazırlanan kodlar ve assetlerin birleştirilmesi
+* Puzzle mekanik testleri ve bug arama
+* Bulunan bugların düzeltilmesi
+* Oyun sahnelerinin tamamlanması
+
+#### Tasarım:
+* Buton tasarımı 
+* Ara sahne çizimleri
+* Oyun müziği bulunması 
+
+### Sprint Review:
+Bu sprintte proje ile tasarım bütünleştirilmiş , proje oynanabilirliğe ve görselliğe sahip olmuştur. Grup üyeleri sürekli iletişim içerisinde olarak , görevlerini yerine getirmiş ,proje teslimi hazırlıklarına geçilmiştir. 
+
+### Sprint Retrospective:
+* Proje tesliminde gerekli olacak dökümanların daha sık iletişime geçilerek hazırlanması kararlaştırıdı. 
+
 
 
