@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Information.unity
     guid: cb4bc05f85398a14e8368f9b6cccf04b
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/mekanik test sahnesi.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Scenes/sahne2.unity
