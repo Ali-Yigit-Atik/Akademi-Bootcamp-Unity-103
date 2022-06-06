@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class trees_puzzle_open : MonoBehaviour
 {
-    public Collider2D[] trees;
 
+
+    // Kahve puzzle'ý çözüldüðünde aðaç puzzleýnýn yapýlabilmesi için aðaçlarýn collider'larýný açma
+
+    public Collider2D[] trees; 
     
-
 
     private void Update()
     {

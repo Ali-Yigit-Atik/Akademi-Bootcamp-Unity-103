@@ -19,13 +19,7 @@ public class pickup_new : MonoBehaviour
 
     public float inventory_scale=0.5f; // nesnenin envanter içindeki küçülme oraný
 
-    //public static Vector3 object_dimension;
-
-    //public static int slot_Index;
-
-    //private pickup_new pickUp; //
-
-    //private GameObject player_;
+    
 
     private void Awake()
     {
@@ -40,13 +34,7 @@ public class pickup_new : MonoBehaviour
     {
         inventory_ = GameObject.FindGameObjectWithTag("player").GetComponent<inventory_new>(); // inventory_new içindeki slots'lara ulaþmak için tanýmlandý
         
-        //pickUp = GetComponent<pickup_new>(); //
-
-        //object_dimension = new Vector3((float) transform.localScale.x, (float)transform.localScale.y, transform.localScale.z);
-
-        //Debug.Log("nesne boyutu "+object_dimension);
-
-        //player_= GameObject.FindGameObjectWithTag("player");
+        
 
     }
 
@@ -75,23 +63,18 @@ public class pickup_new : MonoBehaviour
 
                         inventory_.isFull[i] = true; // envanter artýk dolu
 
-                        //slot_Index = i;
-
-                        //this.gameObject.transform.SetParent(inventory_.slots[i].transform);
-                        //transform.TransformPoint(Vector3.zero);
+                        
 
                         this.gameObject.transform.position = inventory_.slots[i].transform.position; // nesneyi slot'un pozisyonuna atama
 
-                        //Instantiate(itemButton, inventory_.slots[i].transform.position, Quaternion.identity, inventory_.slots[i].transform);
-
-                        //transform.localScale = new Vector3((float) object_dimension.x * 0.5f, (float) object_dimension.y *0.5f, object_dimension.z);
+                        
 
                         transform.localScale=transform.localScale * inventory_scale; // nesneyi slot içine sýðdýrmak için küçültme
 
                         Instantiate(pickup_particle, this.gameObject.transform.position, Quaternion.identity, this.gameObject.transform);
 
 
-                        //this.gameObject.transform.SetParent(player_.transform); gerek kalmadý
+                        
 
                         Debug.Log("yeni nesne boyutu " + transform.localScale);
 
@@ -111,12 +94,12 @@ public class pickup_new : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        isMouseEnter = true;
+        isMouseEnter = true; // mouse nesnenn üzerinde
     }
 
     private void OnMouseExit()
     {
-        isMouseEnter = false;
+        isMouseEnter = false; // mouse nesnenin üzerinde deðil
     }
 
     

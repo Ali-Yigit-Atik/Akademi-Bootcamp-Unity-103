@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class drag_movement_new : MonoBehaviour
 {
+
+    // Bu scriptte nesnelerin sürükle-býrak mekaniðinin kodlarý ve nesne doðru yerde mi deðil mi diye kontrol eden kodlar var
+    // (Not: Aþaðýda yorum þekline alýnmýþ bazý kodlar var. Bu koddar henüz tamamlanmamýþ particle sistem initiate etmek ve initiate edilen particel sistemin
+    // sürüklenen nesne doðru yere yaklaþtýðýnda çalýþmasýný uzaklaþtýðýnda da kapanmasýný içeren kodlarýn denemesidir.)
+
+
+
     private inventory_new inventory_; // inventory_new içindeki slots'lara ulaþmak için tanýmladýk
     public GameObject target;  // Nesnenin býrakýlacaðý yer/obje
     //public GameObject drop_particle;
     //ParticleSystem dropParticle;
 
-    private float targetWidth;
-    private float targetHeight;
-    private Vector3 targetCenter;
-    private Vector3 targetWorldPos;
+    private float targetWidth; // target nesnenin geniþliði
+    private float targetHeight; // target nesnenin yüksekliði
+    private Vector3 targetCenter; // targetin pozisyonu 
+    
 
-    public float kaymaMiktariX = 0;
-    public float kaymaMiktariY = 0;
+    public float kaymaMiktariX = 0; // nesneleri hedef obejenin istenilen yerine býrakmasýný saðlamak için oluþturulmuþ kayma miktarý
+    public float kaymaMiktariY = 0; // nesneleri hedef obejenin istenilen yerine býrakmasýný saðlamak için oluþturulmuþ kayma miktarý
 
     private AudioSource audioSource_;
-    private AudioSource audioSource2_; //  setactive olucak targetler var bu durumda ses çýkarabilmek için targetlerin kardeþleri üzerinden ses çalýnacak
+    private AudioSource audioSource2_; //  setactive(false) olacak targetler var bu durumda ses çýkarabilmek için targetlerin ebeveyn objeleri üzerinden ses çalýnacak
     public AudioClip drop_sound;  // nesne býrakýlýrken çýkan ses klibi
 
     private bool firstTimeSound = true;  // Nesne hedefe býrakýlýrken çýkan býrakma sesi ilk defa mý oynatýlcacak
@@ -49,10 +56,10 @@ public class drag_movement_new : MonoBehaviour
 
     private bool isInTarget = false;
 
-    private float inventoryScale;
+    private float inventoryScale; // nesnelerin envanterdeki boyut deðiþim oraný
 
-    private bool isInSlot =true;
-    private bool isNeedDestroy = false;
+    private bool isInSlot =true; // nesne envanter de mi boolean'ý
+    private bool isNeedDestroy = false; // Bazý nesneler hedefe vardýktan sonra ortadan kaybolmalý 
 
     private void Start()
     {
@@ -76,7 +83,7 @@ public class drag_movement_new : MonoBehaviour
 
         inventoryScale = this.gameObject.GetComponent<pickup_new>().inventory_scale; // nesne envanter içindeyken % ne kadar küçüldüðü tanýmlandý
 
-        //inventory__ = GameObject.FindGameObjectWithTag("inventory");
+        
 
         targetWidth = target.GetComponent<Collider2D>().bounds.size.x;
         targetHeight = target.GetComponent<Collider2D>().bounds.size.y;
@@ -105,15 +112,7 @@ public class drag_movement_new : MonoBehaviour
     {
 
         
-        // taþýnabilir nesnenin hangi slot'a gittiðini bulmak
-
-        //for (int i = 0; i <= inventory_.slots.Length - 1; i++)
-        //{
-        //    if (this.gameObject.transform.position == inventory_.slots[i].transform.position && this.isOnMouseEnter == true)
-        //    {
-        //        this.slotIndex = i;
-        //    }
-        //}
+        
 
         // Slot içindeki objeler child obje deðil yani slot'larla beraber hareket etmiyor bundan dolayý slotlarýn ve kameranýn yaptýðý pozisyon deðiþimini 
         // taþýnabilir objelere aktaran kodlar:
@@ -230,7 +229,7 @@ public class drag_movement_new : MonoBehaviour
 
 
 
-        // Objenin üzerine týklandýðýnda objen pozisyonunun mouse pozisyonu ile arasýndaki farkýný alan ve objenin yer deðiþtirdiðini(this.moving = true diyerek)
+        // Objenin üzerine týklandýðýnda obje pozisyonunun mouse pozisyonu ile arasýndaki farkýný alan ve objenin yer deðiþtirdiðini(this.moving = true diyerek)
         // haber veren kodlar:
 
         if (this.isOnMouseEnter == true && this.mouseDown == true && this.mouseUp == false)
@@ -251,6 +250,8 @@ public class drag_movement_new : MonoBehaviour
                 this.moving = true; // update fonksiyonun içinde bu boolean ile yapýlan yer deðiþtirme logic'i var.
             }
 
+            // Aþaðýda particle efektin deneme kodlarý var(henüz hazýr deðil)
+            
             //if (Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  // Local'leri world position'a çevirdim
             //    Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) // Local'leri world position'a çevirdim
             //{
@@ -271,8 +272,8 @@ public class drag_movement_new : MonoBehaviour
             //
             //}
 
-            //else if (Mathf.Abs(this.transform.position.x - target.transform.position.x) > 0.5f &&  // Local'leri world position'a çevirdim
-            //        Mathf.Abs(this.transform.position.y - target.transform.position.y) > 0.5f) // Local'leri world position'a çevirdim
+            //else if (Mathf.Abs(this.transform.position.x - target.transform.position.x) > 0.5f &&  
+            //        Mathf.Abs(this.transform.position.y - target.transform.position.y) > 0.5f) 
             //{
             //    if (this.isInTarget = false && drop_particle.activeSelf && this.gameObject.GetComponent<Collider2D>().IsTouching(target.GetComponent<Collider2D>()) == false) 
             //    { 
@@ -290,8 +291,7 @@ public class drag_movement_new : MonoBehaviour
         {
             this.moving = false;
 
-            //(Mathf.Abs(this.transform.position.x - target.transform.position.x) <= 0.5f &&  
-            //Mathf.Abs(this.transform.position.y - target.transform.position.y) <= 0.5f) 
+             
             
 
                 // Nesne doðru yerde ise nesne target'e býrakýlsýn kodlarý:
@@ -309,7 +309,7 @@ public class drag_movement_new : MonoBehaviour
                     firstTimeSound = false;
                 }
 
-                //transform.parent = null;
+                
 
                 if (target.gameObject.CompareTag("komidin") && this.finish == false) 
                 {
@@ -367,7 +367,7 @@ public class drag_movement_new : MonoBehaviour
                 this.finish = true; //burda bir boolean yardýmyla hareket logic kurulmuþtu. Nesne yerine vardýðýna göre nesnenin mouse dan etkilenmemesi için
                                     // finish true yapýldý
 
-                if (isInSlot == true && this.finish == true)  // slot'lar boþaldý mý? komutu   (this.isOnMouseEnter == true && && this.finish == true)
+                if (isInSlot == true && this.finish == true)  // slot'lar boþaldý mý? komutu // eski logic: if(this.isOnMouseEnter == true && && this.finish == true)
                 {
                     Debug.Log(this.slotIndex);
                     inventory_.isFull[this.slotIndex] = false;
@@ -385,7 +385,7 @@ public class drag_movement_new : MonoBehaviour
             // Nesne doðru yere býrakýlmamýþsa envantere geri dönsün kodlarý:
             else
             {
-                this.transform.position = resetPosition;
+                this.transform.position = resetPosition; // nesneyi envantere geri koyma
                 
                 transform.localScale = gameoObjectScale; //Nesne envantere geri döndüðünde envanterin içine sýðmasý için tekrar küçülsün
 
@@ -398,10 +398,7 @@ public class drag_movement_new : MonoBehaviour
     }
 
 
-    void deneme_()
-    {
-        deneme = false;
-    }
+    
 
     
    
