@@ -134,7 +134,7 @@ Sprint görevleri ikinci sprit sonunda yapılan toplantı ile belirlenmiştir . 
 Bu sprintte proje ile tasarım bütünleştirilmiş , proje oynanabilirliğe ve görselliğe sahip olmuştur. Grup üyeleri sürekli iletişim içerisinde olarak , görevlerini yerine getirmiş ,proje teslimi hazırlıklarına geçilmiştir. 
 
 ### Sprint Retrospective:
-* Proje tesliminde gerekli olacak dökümanların daha sık iletişime geçilerek hazırlanması kararlaştırıdı. 
+* Projede ki görevlere ayrılacak olan sürelerin ve iş yükü daha iyi tahmin ve analiz edilebilirdi. 
 
 
 
