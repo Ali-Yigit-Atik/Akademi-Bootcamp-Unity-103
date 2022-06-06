@@ -121,9 +121,9 @@ Sprint görevleri ikinci sprit sonunda yapılan toplantı ile belirlenmiştir . 
 * Oyun sahnelerinin tamamlanması
 
 #### Tasarım:
-* Buton tasarımı 
-* Ara sahne çizimleri
-* Oyun müziği bulunması 
+* Eksik assetler tamamlandı 
+* Ara sahnelerde hikaye anlatımı
+* Ses efektleri 
 
 ### Sprint Review:
 Bu sprintte proje ile tasarım bütünleştirilmiş , proje oynanabilirliğe ve görselliğe sahip olmuştur. Grup üyeleri sürekli iletişim içerisinde olarak , görevlerini yerine getirmiş ,proje teslimi hazırlıklarına geçilmiştir. 
