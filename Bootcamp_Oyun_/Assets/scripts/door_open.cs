@@ -5,7 +5,7 @@ using UnityEngine;
 public class door_open : MonoBehaviour
 {
     private bool isFirstTime = true; // ilk defa mý bu nesneye týklanacak
-    public static bool nextSceneDoorOpen = false;
+    public static bool nextSceneDoorOpen = false; // baþka bir scriptte kapýnýn açýldýðýný haber almak için static bool oluþturldu
 
     private void Start()
     {

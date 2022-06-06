@@ -5,7 +5,7 @@ using UnityEngine;
 public class Komidin : MonoBehaviour
 {
     private bool isFirstTime = true; // ilk defa mý bu nesneye týklanacak
-    public static bool komidinOpened = false;
+    public static bool komidinOpened = false; // baþka bir scriptte komidinin açýldýðýný haber almak için static bool oluþturldu
 
 
     private void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class resim : MonoBehaviour
 {
     private bool isFirstTime = true; // ilk defa mý bu nesneye týklanacak
-    public static bool pictureOpened = false;
+    public static bool pictureOpened = false;  // baþka bir scriptte resimin açýldýðýný haber almak için static bool oluþturldu
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class resim : MonoBehaviour
 
                 for (int i = 1; i < this.gameObject.transform.parent.childCount - 1; i++)
                 {
-                    //Destroy(this.gameObject.transform.GetChild(0).gameObject);
+                    
                     this.gameObject.transform.parent.GetChild(i).gameObject.SetActive(true); // objeleri aktif hale getir
                 }
 

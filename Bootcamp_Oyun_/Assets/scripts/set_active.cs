@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class set_active : MonoBehaviour
 {
+    
+    // pasif olan bir obeje açýlacak ve objenin altýnda particle efekt olucak
+    
     public GameObject openedObject;
     public GameObject opendenParticle;
 

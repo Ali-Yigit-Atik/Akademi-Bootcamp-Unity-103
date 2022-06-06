@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Elevator_open : MonoBehaviour
 {
-    public static int totalButtonSolved;
+    public static int totalButtonSolved; // toplanan asansör düðmesi
 
+    // Tüm asansör düðmeleri toplandýðýnda asansörün collider'ý aktif olacak ve bu þekilde üzerine týklanabilcek 
+    // üzerine týklandýðýnda baþka bir script sayesinde sonraki sahneye geçiþ yapýlacak
     
 
     private void Start()

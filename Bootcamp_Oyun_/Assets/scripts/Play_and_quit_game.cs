@@ -15,7 +15,7 @@ public class Play_and_quit_game : MonoBehaviour
 
     public void quit_game()
     {
-        Debug.Log("quit xxxx");
+        
         Application.Quit(); // oyundan çýkma
     }
 }

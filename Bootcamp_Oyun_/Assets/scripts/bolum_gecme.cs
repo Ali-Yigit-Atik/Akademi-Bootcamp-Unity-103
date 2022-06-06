@@ -8,12 +8,9 @@ public class bolum_gecme : MonoBehaviour
     private bool onenter = false; // mouse bolum geçme kapýsýnýn üstünde mi
 
     public string sceneName=""; // gidilecek sahnenin adý
-    //private Collider2D collider_;
+    
 
-    private void Start()
-    {
-        //collider_ = this.gameObject.GetComponent<Collider2D>();
-    }
+    
 
     private void Update()
     {

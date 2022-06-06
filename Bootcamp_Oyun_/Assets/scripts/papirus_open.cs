@@ -5,37 +5,30 @@ using UnityEngine;
 public class papirus_open : MonoBehaviour
 {
 
-    private bool onenter = false;
-    [SerializeField] GameObject papirusCanvas;
+    private bool onenter = false; // mouse bu game objeninin üzerinde mi deðil mi diye kontrol edilecek
+    [SerializeField] GameObject papirusCanvas; // aktive edilecek olan papirus canvas
 
     private AudioSource audioSource_;
 
-    public AudioClip paperSound; // 
+    public AudioClip paperSound; // papirus açýlýrken çalacak olan ses klibi
 
-    private bool isFirtTime = true;
+    
 
     private void Start()
     {
-        papirusCanvas.gameObject.SetActive(false);
+        papirusCanvas.gameObject.SetActive(false); // papirus baþlangýçta kapalý olsun
 
-        audioSource_ = this.gameObject.GetComponent<AudioSource>();  // belleðe yazma
-        audioSource_.clip = paperSound; // 
+        audioSource_ = this.gameObject.GetComponent<AudioSource>();  
+        audioSource_.clip = paperSound; // ses klibi atama
 
         
     }
     private void Update()
     {
 
-        //if (onenter == true && isFirtTime == true)
-        //{
-        //
-        //    //audioSource_.Play();
-        //    papirusCanvas.gameObject.SetActive(true);
-        //    isFirtTime = false;
-        //
-        //}
+        
 
-        if (onenter==true && Input.GetMouseButtonDown(0))
+        if (onenter==true && Input.GetMouseButtonDown(0)) // scriptin bulunduðu nesnenin üzerine týklandýðýnda papirus açýlsýn ve ses klibi çalýnsýn
         {
             
             audioSource_.Play();
@@ -47,7 +40,7 @@ public class papirus_open : MonoBehaviour
     private void OnMouseEnter()
     {
         
-        onenter = true; // mouse nesnenin iþaretinin üzerinde
+        onenter = true; // mouse nesnenin  üzerinde
     }
 
     private void OnMouseExit()
@@ -56,7 +49,7 @@ public class papirus_open : MonoBehaviour
         onenter = false;  // mouse nesnenin üzerinde deðil
     }
 
-    public void papirus_canvas_pasif()
+    public void papirus_canvas_pasif() // papirus canvasýn içinde ki panele button komponenti atandý bu panele týklandýðýnda canvas kapanýyor
     {
         papirusCanvas.gameObject.SetActive(false);
     }
