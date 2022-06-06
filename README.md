@@ -6,6 +6,8 @@ Takım Kintsugi
 
 Puzzle adventure click and point oyun olacak.
 
+Bu oyunda kullanılan görsel assetler tasarımcımız Haktan Öztürkçü tarafından yapılmıştır.
+
 # Takım Üyeleri:
 
     Beyza Nur Bilgi: Product Owner
