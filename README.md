@@ -128,5 +128,9 @@ Bu sprintte proje ile tasarım bütünleştirilmiş , proje oynanabilirliğe ve 
 ### Sprint Retrospective:
 * Proje tesliminde gerekli olacak dökümanların daha sık iletişime geçilerek hazırlanması kararlaştırıdı. 
 
+# Ürün Fotoğrafları
+![ornek sahne 1](https://user-images.githubusercontent.com/73478689/172162070-21936f90-b41c-4b53-b49d-a6df0239c56c.png)
+![ornek sahne 2](https://user-images.githubusercontent.com/73478689/172162086-4df15d4d-b124-4dc6-a2e1-2667a01b116e.png)
+![ornek sahne 3](https://user-images.githubusercontent.com/73478689/172162118-010e00ef-7fdf-4012-9230-7eaf7ca2ec1c.png)
 
 
