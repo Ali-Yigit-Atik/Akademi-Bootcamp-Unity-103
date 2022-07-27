@@ -48,7 +48,7 @@ public class Right_Move1 : MonoBehaviour
             isRightMove = true;// sað tarafa hareket ediyor
         }
 
-        if (Input.GetMouseButtonUp(0)) // mouse tuþuna basýlma kesildiðinde
+        else //if(Input.GetMouseButtonUp(0)) // mouse tuþuna basýlma kesildiðinde
         {
             sr.color = Color.white; // okun rengi eski haline dönsün
             isRightMove = false;  // hareket etmiyor

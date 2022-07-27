@@ -51,7 +51,7 @@ public class left_move : MonoBehaviour
             sr.color = redish; // oka basýlý tutulduðunda rengi deðiþsin
             isLeftMove = true; // sol tarafa hareket ediyor
         }
-        if (Input.GetMouseButtonUp(0)) // mouse tuþuna basýlma kesildiðinde
+        else //if(Input.GetMouseButtonUp(0)) // mouse tuþuna basýlma kesildiðinde
         {
             sr.color = Color.white; // okun rengi eski haline dönsün
             isLeftMove = false; // hareket etmiyor
