@@ -10,8 +10,8 @@ Bu oyunda kullanılan görsel assetler tasarımcımız Haktan Öztürkçü taraf
 
 # Takım Üyeleri:
 
-    Beyza Nur Bilgi: Product Owner
     Ali Yiğit Atik: Scrum Master/Developer
+    Beyza Nur Bilgi: Product Owner    
     Haktan Öztürkçü: Team Member/Tasarımcı
     Elif Nazlıcan Koca: Team Member/Developer
 
