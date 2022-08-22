@@ -18,7 +18,10 @@ Bu oyunda kullanılan görsel assetler tasarımcımız Haktan Öztürkçü taraf
 # Oyun İsmi
 
 -- As Long As You Stay --
-
+#
+# Oyun Tanıtım Videosu
+https://user-images.githubusercontent.com/102957660/185820306-f1710b9c-c05c-4d66-865b-11d1e97ca895.mp4
+#
 # Oyun Açıklaması:
 Soyut kavramlar kullanarak bir çocuğun mücadelesini anlatacağız. 
 
