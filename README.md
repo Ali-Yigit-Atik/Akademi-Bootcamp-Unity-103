@@ -38,7 +38,7 @@ Dijital video oyuncuları
 
 # Sprint 1
 ![ss](https://user-images.githubusercontent.com/104438447/167482529-d9e34ebf-5fc7-408c-b6a3-45e42b9bb67a.png)
-![sss](https://user-images.githubusercontent.com/104438447/167482810-849fa709-38cb-4422-a299-10e3ee460a79.png)
+![Gdd](https://user-images.githubusercontent.com/102957660/185821585-515b363d-7824-4218-952c-e2cc1ca0b258.png)
 
 
 
